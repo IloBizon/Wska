@@ -26,6 +26,6 @@ urlpatterns = [
     path('articles/', include('articles.urls')),
     path('polls/', include('polls.urls')),
     path('account/', include('account.urls')),
-    path("", index)
+    path("", index, name='index')
 
 ]
