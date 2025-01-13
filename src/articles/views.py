@@ -25,7 +25,7 @@ class CommentCreateView(FormView):
 
     def form_valid(self, form):
         pk=self.kwargs['pk']
-        user = User.objects.get(id=1)
+        user = self.request.user
         article = Article.objects.get(id=pk)
         Comment.objects.create(
             text = self.request.POST.get('text'),
@@ -43,7 +43,7 @@ class CommentUpdateView(FormView):
 
     def form_valid(self, form):
         pk=self.kwargs['pk']
-        user = User.objects.get(id=1)
+        user = self.request.user
         article = Article.objects.get(id=pk)
         comment_id = self.kwargs['id']
         comment = Comment.objects.filter(id=comment_id)
