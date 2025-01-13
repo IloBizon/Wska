@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div class="article__block">
+        <h3>{{ article.title }}</h3>
+        <p>{{ article.text }}</p>
+        <p>author: {{ article.author }}</p>
+        <p>date: {{ article.pub_date }}</p>
+        <h4>{{ article.get_tags }}</h4>
+        <div class="article__block__comment">
+            <h4>Комментарии:</h4>
+            {% for comment in article.comments.all %}
+                <div class="article__comment">
+                    <p>{{ comment.user }}</p>
+                    <p>{{ comment.text }}</p>
+                </div>
+            {% empty %}
+                <p>Оставьте свой первый комментарий!</p>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
