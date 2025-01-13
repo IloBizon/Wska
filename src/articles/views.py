@@ -39,10 +39,18 @@ class CommentUpdateView(FormView):
     model = Comment
     form_class = CommentForm
     template_name = 'article_form.html'
-    context_object_name = 'article_form'
     success_url = reverse_lazy('article_detail')
 
+    def form_valid(self, form):
+        pk=self.kwargs['pk']
+        user = User.objects.get(id=1)
+        article = Article.objects.get(id=pk)
+        comment_id = self.kwargs['id']
+        comment = Comment.objects.filter(id=comment_id)
+        comment.update(
+            text = self.request.POST.get('text'),
+            article=article,
+            user=user
+        )
+        return redirect('article_detail', pk)
 
-class CommentDeleteView(DeleteView):
-    model = Comment
-    success_url = reverse_lazy('article_detail')
