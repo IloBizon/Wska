@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Polls</title>
+</head>
+<body>
+    <h1>Опросы</h1>
+    {% for i in polls %}
+        <h2>{{ i.name }}</h2>
+        <a href="{% url 'answer' i.id %}">Пройти</a>
+    <hr>
+    {% endfor %}
+</body>
+</html>
