@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Results</title>
+</head>
+<body>
+    <h1>Результаты</h1>
+    {% for i in results %}
+        <h2>{{ i.text }}: {{ i.percentage }}%</h2>
+    {% endfor %}
+    <a href="#">Главная</a>
+</body>
+</html>
