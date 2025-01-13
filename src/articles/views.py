@@ -1,9 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, FormView
 from .models import Tag, Article, Comment
 from django.urls import reverse_lazy
 from .forms import CommentForm
-
+from django.contrib.auth.models import User
 
 class ArticleListView(ListView):
     model = Article
@@ -22,6 +22,17 @@ class CommentCreateView(FormView):
     form_class = CommentForm
     template_name = 'article_form.html'
     success_url = reverse_lazy('article_detail')
+
+    def form_valid(self, form):
+        pk=self.kwargs['pk']
+        user = User.objects.get(id=1)
+        article = Article.objects.get(id=pk)
+        Comment.objects.create(
+            text = self.request.POST.get('text'),
+            article=article,
+            user=user
+        )
+        return redirect('article_detail', pk)
 
 
 class CommentUpdateView(FormView):
