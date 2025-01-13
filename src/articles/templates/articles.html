@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <div class="articles__row">
+            {% for article in articles %}
+                <div class="article__block">
+                    <h3><a href="{% url 'article_detail' article.pk %}">{{ article.title }}</a></h3>
+                    <p>author: {{ article.author }}</p>
+                    <p>date: {{ article.pub_date }}</p>
+                    <h4>{{ article.get_tags }}</h4>
+                    </div>
+                </div>
+
+            {% endfor %}
+        </div>
+    </div>
+
+</body>
+</html>
