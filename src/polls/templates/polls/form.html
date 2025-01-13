@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form action="" method="post">
+        {% csrf_token %}
+        <h1>{{ poll.name }}</h1>
+        <div style="display: flex; flex-direction: column; gap: 15px;">
+            {% for variant in variants %}
+                <div class="radio_button">
+                    <input  style="transform: scale(1.5);" type="radio" id="variant" name="variant" value="{{ variant.id }}" />
+                    <label style="font-size: 25px;">{{ variant.name }}</label>
+                </div>
+            {% endfor %}
+        </div>
+
+        <button type="submit">Отправить ответ</button>
+    </form>
+
+</body>
+</html>
